@@ -1,0 +1,9 @@
+{
+  "presets": [["env", {"modules": false, "useBuiltIns": true}], "react"],
+  "env": {
+    "test": {
+      "presets": [["env"], "react"]
+    }
+  },
+  "plugins": ["external-helpers"]
+}
