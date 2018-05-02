@@ -28,7 +28,7 @@ async function store(
     extensions?: string | Array<string>,
     filename?: string
   } = {}
-) {
+): Promise<any> {
   // let ext = extensions[0];
   const extensions = [].concat(options.extensions || 'json');
   const filename = options.filename || '.shelveit';

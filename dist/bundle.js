@@ -1482,6 +1482,11 @@ require$$1$3('keys');
 require$$1$3('values');
 require$$1$3('entries');
 
+var es6_array_iterator$1 = /*#__PURE__*/Object.freeze({
+	default: es6_array_iterator,
+	__moduleExports: es6_array_iterator
+});
+
 var ITERATOR$3 = require$$0$5('iterator');
 var SAFE_CLOSING = false;
 
@@ -1575,6 +1580,8 @@ var getIterFn = ( core_getIteratorMethod$1 && core_getIteratorMethod ) || core_g
 
 var createArrayMethod = ( _arrayMethods$1 && _arrayMethods ) || _arrayMethods$1;
 
+var require$$31 = ( es6_array_iterator$1 && es6_array_iterator ) || es6_array_iterator$1;
+
 var $iterDetect = ( _iterDetect$1 && _iterDetect ) || _iterDetect$1;
 
 var require$$36 = ( _arrayCopyWithin$1 && _arrayCopyWithin ) || _arrayCopyWithin$1;
@@ -1613,7 +1620,7 @@ if (require$$0) {
   var createArrayMethod$$1 = createArrayMethod;
   var createArrayIncludes = require$$0$3;
   var speciesConstructor = require$$30;
-  var ArrayIterators = es6_array_iterator;
+  var ArrayIterators = require$$31;
   var Iterators$$1 = Iterators;
   var $iterDetect$$1 = $iterDetect;
   var setSpecies$$1 = setSpecies;
@@ -5051,7 +5058,7 @@ for (var collections = getKeys(DOMIterables), i$1 = 0; i$1 < collections.length;
     if (!proto[ITERATOR$4]) require$$0$1(proto, ITERATOR$4, ArrayValues);
     if (!proto[TO_STRING_TAG]) require$$0$1(proto, TO_STRING_TAG, NAME$1);
     Iterators[NAME$1] = ArrayValues;
-    if (explicit) for (key in es6_array_iterator) if (!proto[key]) redefine(proto, key, es6_array_iterator[key], true);
+    if (explicit) for (key in require$$31) if (!proto[key]) redefine(proto, key, require$$31[key], true);
   }
 }
 
@@ -6044,3 +6051,9 @@ module.exports = {
   store: store$1,
   retrieve: retrieve
 };
+
+var src = {
+
+};
+
+module.exports = src;

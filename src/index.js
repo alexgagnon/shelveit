@@ -1,2 +1,2 @@
-import 'babel-polyfill';
-import './shelveit.js';
+require('babel-polyfill');
+require('./shelveit.js');

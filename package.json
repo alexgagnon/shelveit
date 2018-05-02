@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "rollup --config --watch",
+    "rollup": "rollup --config",
+    "babel": "babel src/ -o dist/bundle.js",
     "commit": "git-cz",
     "coverage": "flow coverage",
     "flow": "flow check",
@@ -11,6 +12,7 @@
     "test": "npm run lint && npm run test:unit && npm run test:e2e"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -33,6 +35,7 @@
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-nod  e-resolve": "^3.3.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "semantic-release": "^15.1.5",
     "stylelint": "^9.2.0",
@@ -49,9 +52,10 @@
     }
   },
   "name": "shelveit",
-  "version": "1.0.0",
-  "description": "state persistence in json, yaml, toml, or ini files, optionally encrypted",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description":
+    "state persistence in json, yaml, toml, or ini files, optionally encrypted",
+  "main": "dist/bundle.js",
   "dependencies": {
     "globby": "^8.0.1",
     "ini": "^1.3.5",
