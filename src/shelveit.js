@@ -1,5 +1,6 @@
 // @flow
 
+require('babel-polyfill');
 const {basename, extname, resolve} = require('path');
 const {
   createHash,
@@ -10,7 +11,6 @@ const {
 const {promisify} = require('util');
 const {readFile, stat, writeFile} = require('fs');
 const readFileP = promisify(readFile),
-  statP = promisify(stat),
   writeFileP = promisify(writeFile);
 const ini = require('ini');
 const toml = require('toml-j0.4');

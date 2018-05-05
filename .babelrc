@@ -1,9 +1,4 @@
 {
-  "presets": [["env", {"modules": false, "useBuiltIns": true}], "react"],
-  "env": {
-    "test": {
-      "presets": [["env"], "react"]
-    }
-  },
-  "plugins": ["external-helpers"]
+  "presets": [["env", {"useBuiltIns": true, "targets": {"node": 6}}], "flow"],
+  "plugins": ["transform-async-to-generator"]
 }
