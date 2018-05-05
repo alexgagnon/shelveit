@@ -11,7 +11,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
-  plugins: ['html', 'jsx-a11y', 'react', 'testcafe', 'vue'],
+  plugins: ['jest'],
   rules: {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
