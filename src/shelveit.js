@@ -1,17 +1,14 @@
 // @flow
 
 require('babel-polyfill');
-const {basename, extname, resolve} = require('path');
+const {basename, resolve} = require('path');
 const {
-  createHash,
+  // createHash,
   createCipher,
-  createDecipher,
-  randomBytes
+  createDecipher
+  // randomBytes
 } = require('crypto');
-const {promisify} = require('util');
-const {readFile, stat, writeFile} = require('fs');
-const readFileP = promisify(readFile),
-  writeFileP = promisify(writeFile);
+const {readFileP, writeFileP} = require('../libs/fsp.js');
 const ini = require('ini');
 const toml = require('toml-j0.4');
 const tomlify = require('tomlify-j0.4');
@@ -56,7 +53,7 @@ async function store(
 
       if (options.encrypt != null) {
         state = encrypt(state, options.encrypt.password, algorithm);
-        ext += '.aes';
+        ext += '.' + algorithm.slice(0, 3);
       }
 
       try {
@@ -74,11 +71,11 @@ async function store(
 async function retrieve(
   options?: {
     encrypt?: {password: string | Buffer, algorithm: string},
-    path?: string
+    filename?: string
   } = {}
 ) {
-  const algorithm = (options.encrypt && options.encrypt.algorithm) || 'aes256';
-  let file = options.path;
+  // const algorithm = (options.encrypt && options.encrypt.algorithm) || 'aes256';
+  let file = options.filename;
   if (file == null) {
     file = (await globby('.shelveit*'))[0];
     if (!file) throw Error('Cannot find stored file!');
@@ -90,7 +87,7 @@ async function retrieve(
     let data = await readFileP(file, {encoding: 'utf8'});
 
     if (options.encrypt != null) {
-      data = decrypt(data, options.encrypt.password, algorithm);
+      data = decrypt(data, options.encrypt.password);
     }
 
     switch (ext) {
@@ -120,7 +117,7 @@ async function retrieve(
 function encrypt(
   data: string | Buffer,
   password: string | Buffer,
-  algorithm
+  algorithm: string
 ): string {
   /*
     if upgrading to createCipheriv
@@ -138,8 +135,12 @@ function encrypt(
   return encrypted;
 }
 
-function decrypt(data: string, password: string | Buffer, algorithm: string) {
-  const decipher = createDecipher('aes256', password);
+function decrypt(
+  data: string,
+  password: string | Buffer,
+  algorithm = 'aes256'
+) {
+  const decipher = createDecipher(algorithm, password);
   let decrypted = decipher.update(data, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
   return decrypted;

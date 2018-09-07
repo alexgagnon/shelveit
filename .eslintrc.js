@@ -11,7 +11,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
-  plugins: ['jest'],
+  plugins: ['jest', 'flowtype'],
   rules: {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
